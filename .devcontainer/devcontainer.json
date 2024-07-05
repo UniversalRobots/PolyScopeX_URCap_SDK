@@ -1,0 +1,46 @@
+{
+  "name": "polyscopex-sdk-devcontainer",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+  ],
+  "appPort": [
+    "4200:4200"
+  ],
+  "forwardPorts": [
+    4200
+  ],
+  "onCreateCommand": "sudo chmod 666 /var/run/docker.sock",
+  "postCreateCommand": {
+    "ursim": "sudo chown psxdev:psxdev ${containerWorkspaceFolder} && sudo rm -f run-simulator && ln -s /ursim-polyscopex-0.10.147/run-simulator ${containerWorkspaceFolder}",
+    "sdk": "sudo rsync -ac --info=progress2 --exclude=install.sh --exclude=readme.txt /sdk-polyscopex-5.1.45/ ${containerWorkspaceFolder}",
+  },
+  "postStartCommand": "sudo chmod 666 /var/run/docker.sock",
+  "containerEnv": {
+    "SHELL": "/bin/bash",
+    "DEV_CONTAINER": "true",
+    "containerWorkspaceFolder": "${containerWorkspaceFolder}"
+  },
+  "runArgs": [
+    "--add-host=host.docker.internal:host-gateway",
+    "--privileged"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Angular.ng-template",
+        "ZainChen.json",
+        "ahern.urscript",
+        "ecmel.vscode-html-css",
+        "eriklynd.json-tools",
+        "ms-azuretools.vscode-docker",
+        "ms-python.python",
+        "ms-vscode.vscode-typescript-next",
+        "redhat.vscode-xml",
+        "redhat.vscode-yaml",
+      ]
+    }
+  }
+}
