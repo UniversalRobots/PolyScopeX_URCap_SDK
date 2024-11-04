@@ -1,7 +1,7 @@
-FROM node:18.17.1-bookworm
-ENV PS_VERSION=0.12.125 \
-    URSIM_VERSION=0.10.147 \
-    SDK_VERSION=5.1.45
+FROM node:20.14.0-bookworm
+ENV PS_VERSION=0.13.127 \
+    URSIM_VERSION=0.11.186 \
+    SDK_VERSION=5.3.45
 SHELL ["/bin/bash", "-c"]
 
 RUN set -ex; \
@@ -50,20 +50,9 @@ RUN set -ex; \
 RUN set -ex; \
     unzip '*.zip'; \
     rm *.zip; \
-    chown -R $USERNAME:$USERNAME sdk-polyscopex-${SDK_VERSION}/ ursim-polyscopex-${URSIM_VERSION}/  /usr/local/lib/node_modules/
+    chown -R $USERNAME:$USERNAME /sdk-polyscopex-${SDK_VERSION}/ /ursim-polyscopex-${URSIM_VERSION}/  /usr/local/lib/node_modules/ /usr/local/bin
 
 USER $USERNAME
 
-RUN set -ex; \
-    pushd /ursim-polyscopex-${URSIM_VERSION} > /dev/null; \
-    npm run build-local --prefix artifacts/runtime; \
-    popd > /dev/null
-
-RUN set -ex; \
-	pushd /sdk-polyscopex-${SDK_VERSION}/urcap-generator > /dev/null; \
-	npm install --no-update-notifier ; \
-	npm link; \
-	cp -f sh_newurcap ../newurcap.sh; \
-	npm config set @universal-robots:registry https://pkgs.dev.azure.com/polyscopex/api/_packaging/polyscopex/npm/registry/; \
-	npm config set strict-ssl false; \
-	popd > /dev/null
+RUN cd /ursim-polyscopex-${URSIM_VERSION}; ./install.sh
+RUN cd /sdk-polyscopex-${SDK_VERSION}; ./install.sh

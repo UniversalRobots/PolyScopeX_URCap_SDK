@@ -1,6 +1,6 @@
 # PolyScope X No Install SDK (Codespace)
 
-This repository contains the PolyScope X SDK and URSim artefacts and is accessible via GitHub Codespace.
+This repository contains the PolyScope X SDK and URSim artefacts and is accessible via [GitHub Codespaces](https://docs.github.com/en/codespaces/overview).
 
 ## Intention of this repository
 
@@ -15,32 +15,27 @@ the [Universal Robots Discord server](https://discord.com/invite/sEjRgEf6fp).
 
 **Note**
 You can install URCaps from local storage via the system manager in URSim.
-However, due to Codespace transfer restrictions, there is a limit to the size of URCaps that can be installed this way.
-When building and installing URCaps from Codespace there are no size restrictions. For more details see "Build and
+However, due to codespace transfer restrictions, there is a limit to the size of URCaps that can be installed this way.
+When building and installing URCaps from codespace there are no size restrictions. For more details see "Build and
 Deploy URCap" section below.
-
-## License
-
-This SDK is subject to and governed by our “LICENSE TERMS FOR SDKS”, which can be found in the license file and
-here: https://www.universal-robots.com/legal/terms-and-conditions/license_terms_for_sdks.txt . By accessing, storing,
-copying, sharing, opening, or otherwise using or disposing of this file, you accept and acknowledge that you are bound
-by the “LICENSE TERMS FOR SDKS”.
 
 ## Working with samples
 
-It is highly recommended to treat the samples folder as read-only, because rebuilding the Codespace container will
+It is highly recommended to treat the samples folder as read-only, because rebuilding the codespace container will
 remove and recreate this folder.
 To preserve changes to samples, simply copy the modified URCap sample to a location outside the samples folder and push
 it to your git repository.
 
-## Start Codespace from Repo
+## Start Codespace from repository
 
-1. Open the code drop down, and select the Codespaces tab. You can then choose to create a Codespace on master (or any
+**NB:** You need to have a (free) GitHub user-account and be logged in, to be able to use Codespaces
+
+1. Open the `Code` drop down, and select the codespaces tab. You can then choose to create a codespace on master (or any
    other repository). ![New Codespace](images/newCodespace.png)
 
-2. A new tab will open, and the Codespace will start loading up. You will see a web version of VSCode. It can take a
-   couple of minutes to set up a remote connection, and build the Codespace. You will know that the workspace has been
-   built successfully when you see the postRunCommands being executed, as shown
+2. A new tab will open, and the codespace will start loading up. You will see a web version of VSCode. It can take a
+   couple of minutes to set up a remote connection, and build the codespace. You will know that the workspace has been
+   built successfully when you see the `postCreateCommand` and `postStartCommand` are executed, as shown
    below. ![Container Start](images/containerStart.png)
 
 After you do this, you can access this cloud workspace [here](https://github.com/codespaces). Any changes to your space
@@ -48,21 +43,18 @@ become a fork from this repository.
 
 ## URSim & Port Forwarding
 
-It is possible to start the simulator by running the command `./run-simulator`.
-However, you must manually forward the port being used in order to successfully run the application.
-This is also how you will access the URSim GUI.
+After startup has finished, you can start the simulator by running the command `./run-simulator --port <PORT_NUMBER>`. 
+If you don't specify a port, it will default to port 80.
+
+You must manually forward the port being used in order to successfully view the application. This is also how you will 
+access the URSim GUI.
 
 1. Open the PORTS tab next to your terminal. ![Forward Port Landing](images/portForward.png)
 
-2. You will have the option to forward a port here. By default, the simulator is launched on port 80. Enter "80" into
-   the port number field and press enter. ![Forward Port Landing](images/portForward2.png)
+2. Enter the chosen port into the port number field in the 'Port' column and press enter. 
+![Forward Port Landing](images/portForward2.png)
 
-3. You can now open the dynamically generated link to view and use URSim.
-
-**Note: you can change the URSim port by using the port flag:**
-`./run-simulator --port <PORT_NUMBER>`
-
-**You will need to manually forward the port number you choose, with the steps listed above**
+3. You can now open the dynamically generated link (in the 'Forwarded Address' column) to view and use URSim.
 
 **Note:** Codespace has a default timeout of 30 minutes, after which you'll need to forward the ports again. You can
 read more about changing the
@@ -105,4 +97,18 @@ To create the final zip file for a contribution, go to its folder and run the fo
    `npm run install-urcap`
 
 You should now see the URCap in URSim. For more information, refer to
-the [PolyScope X SDK Official Documentation](https://docs.universal-robots.com) 
+the [PolyScope X SDK Official Documentation](https://docs.universal-robots.com)
+
+## Stopping or deleting a codespace instance
+
+It is possible to close down the codespace instance manually, by pressing the code drop down button, then on the right
+side pressing the three dots to open a menu to either select the 
+
+- `Stop codespace`, which stops all running processes, and allows for starting up the same codespace again. 
+- `Delete`, which completely removes codespace the instance.
+
+![Closing codespace](images/closingCodespace.png)
+
+There are more information on
+the official page about [lifecycle of codespaces](https://docs.github.com/en/codespaces/getting-started/understanding-the-codespace-lifecycle)
+which also describes the above in more detail, along with reentering and restarting a codespace.
