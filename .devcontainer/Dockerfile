@@ -1,7 +1,7 @@
 FROM node:20.14.0-bookworm
-ENV PS_VERSION=0.13.127 \
+ENV PS_VERSION=0.13.128 \
     URSIM_VERSION=0.11.186 \
-    SDK_VERSION=5.3.45
+    SDK_VERSION=5.3.46
 SHELL ["/bin/bash", "-c"]
 
 RUN set -ex; \
