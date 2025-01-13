@@ -1,5 +1,5 @@
 FROM node:20.14.0-bookworm
-ENV PS_VERSION=0.14.75 \
+ENV PS_VERSION=0.14.76 \
     URSIM_VERSION=0.12.159 \
     SDK_VERSION=5.4.52
 SHELL ["/bin/bash", "-c"]
@@ -36,7 +36,7 @@ RUN set -ex; \
 COPY *.zip /
 
 #   Set up non-root user
-ARG USERNAME=psxdev
+ARG USERNAME=dev
 ARG USER_UID=1001
 ARG USER_GID=$USER_UID
 RUN set -ex; \
@@ -46,7 +46,7 @@ RUN set -ex; \
     echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME; \
     chmod 0440 /etc/sudoers.d/$USERNAME
 
-#   unzip files, chown to psxdev
+#   unzip files, chown to dev
 RUN set -ex; \
     unzip '*.zip'; \
     rm *.zip; \

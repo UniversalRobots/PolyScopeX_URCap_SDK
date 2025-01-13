@@ -14,7 +14,7 @@
   ],
   "onCreateCommand": "sudo chmod 666 /var/run/docker.sock",
   "updateContentCommand": {
-    "setOwnership": "sudo chown -R psxdev:psxdev ${containerWorkspaceFolder} /ursim-polyscopex-0.12.159 /sdk-polyscopex-5.4.52"
+    "setOwnership": "sudo chown -R dev:dev ${containerWorkspaceFolder} /ursim-polyscopex-0.12.159 /sdk-polyscopex-5.4.52"
   },
   "postCreateCommand": {
     "prepareUrsim": "sudo rm -f run-simulator && ln -s /ursim-polyscopex-0.12.159/run-simulator ${containerWorkspaceFolder}",
