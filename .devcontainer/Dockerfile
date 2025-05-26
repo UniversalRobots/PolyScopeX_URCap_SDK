@@ -1,7 +1,7 @@
 FROM node:20.14.0-bookworm
-ENV PS_VERSION=0.15.64 \
-    URSIM_VERSION=0.13.124 \
-    SDK_VERSION=6.0.27
+ENV PS_VERSION=0.16.31 \
+    URSIM_VERSION=0.14.47 \
+    SDK_VERSION=6.1.29
 SHELL ["/bin/bash", "-c"]
 
 RUN set -ex; \
@@ -13,6 +13,11 @@ RUN set -ex; \
              sudo \
              tzdata \
              unzip \
+             python3 \
+             python3-venv \
+             python3-pip \
+             binutils \
+             git \
              rsync; \
     rm -rf /var/lib/apt/lists/*
 
@@ -35,6 +40,8 @@ RUN set -ex; \
 #   Copy zipped files to /
 COPY *.zip /
 
+# Update NPM
+RUN npm -g install npm@10.9.1
 #   Set up non-root user
 ARG USERNAME=dev
 ARG USER_UID=1001
@@ -56,3 +63,4 @@ USER $USERNAME
 
 RUN cd /ursim-polyscopex-${URSIM_VERSION}; ./install.sh
 RUN cd /sdk-polyscopex-${SDK_VERSION}; ./install.sh
+RUN cd /sdk-polyscopex-${SDK_VERSION}; python3 -m venv urcap-generator/venv; source urcap-generator/venv/bin/activate; pip3 install -r urcap-generator/requirements.txt
