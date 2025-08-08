@@ -14,11 +14,11 @@
   ],
   "onCreateCommand": "sudo chmod 666 /var/run/docker.sock",
   "updateContentCommand": {
-    "setOwnership": "sudo chown -R dev:dev ${containerWorkspaceFolder} /ursim-polyscopex-0.14.47 /sdk-polyscopex-6.1.29"
+    "setOwnership": "sudo chown -R dev:dev ${containerWorkspaceFolder} /ursim-polyscopex-0.15.88 /sdk-polyscopex-6.2.44"
   },
   "postCreateCommand": {
-    "prepareUrsim": "sudo rm -f run-simulator && ln -s /ursim-polyscopex-0.14.47/run-simulator ${containerWorkspaceFolder}",
-    "prepareSdk": "sudo rsync -ac --info=progress2 --exclude=install.sh --exclude=readme.txt /sdk-polyscopex-6.1.29/ ${containerWorkspaceFolder}",
+    "prepareUrsim": "sudo rm -f run-simulator && ln -s /ursim-polyscopex-0.15.88/run-simulator ${containerWorkspaceFolder}",
+    "prepareSdk": "sudo rsync -ac --info=progress2 --exclude=install.sh --exclude=readme.txt /sdk-polyscopex-6.2.44/ ${containerWorkspaceFolder}",
   },
   "postStartCommand": "sudo chmod 666 /var/run/docker.sock",
   "containerEnv": {
