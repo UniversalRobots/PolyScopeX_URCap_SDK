@@ -2,3 +2,4 @@ samples/**
 urcap-generator/**
 newurcap.sh
 run-simulator
+manifest-spec-*.json
