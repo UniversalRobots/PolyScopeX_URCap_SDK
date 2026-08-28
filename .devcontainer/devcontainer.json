@@ -25,11 +25,11 @@
   },
   "onCreateCommand": "sudo chmod 666 /var/run/docker.sock",
   "updateContentCommand": {
-    "setOwnership": "sudo chown -R dev:dev ${containerWorkspaceFolder} /ursim-polyscopex-0.18.96 /sdk-polyscopex-6.5.65"
+    "setOwnership": "sudo chown -R dev:dev ${containerWorkspaceFolder} /ursim-polyscopex-0.19.135 /sdk-polyscopex-6.6.66"
   },
   "postCreateCommand": {
-    "prepareUrsim": "sudo rm -f run-simulator && ln -s /ursim-polyscopex-0.18.96/run-simulator ${containerWorkspaceFolder}",
-    "prepareSdk": "sudo rsync -ac --info=progress2 --exclude=install.sh --exclude=readme.txt /sdk-polyscopex-6.5.65/ ${containerWorkspaceFolder}"
+    "prepareUrsim": "sudo rm -f run-simulator && ln -s /ursim-polyscopex-0.19.135/run-simulator ${containerWorkspaceFolder}",
+    "prepareSdk": "sudo rsync -ac --info=progress2 --exclude=install.sh --exclude=readme.txt /sdk-polyscopex-6.6.66/ ${containerWorkspaceFolder}"
   },
   "postStartCommand": "sudo chmod 666 /var/run/docker.sock",
   "containerEnv": {
@@ -48,7 +48,7 @@
         "angular.languageServer.useBundled": true,
         "angular.forceStrictTemplates": true,
         "yaml.schemas": {
-          "manifest-spec-19.10.31.json": ["manifest.yaml"]
+          "manifest-spec-19.11.25.json": ["manifest.yaml"]
         }
       },
       "extensions": [
